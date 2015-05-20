@@ -428,9 +428,11 @@ int main(int argc, char **argv) {
 		if (cmdline.hasParameter(param_save_model_w0)) {
 			std::string filename = cmdline.getValue(param_save_model_w0);
 			std::cout << "writing " << filename << std::endl; std::cout.flush();
-			std::ofstream out (filename.c_str(), std::ios_base::binary);
+			std::ofstream out (filename.c_str());
 			if (out.is_open()) {
-				out.write(reinterpret_cast<char*>(&fm.w0), sizeof(double));
+                          out << fm.w0;
+                          out << std::endl;
+                          //				out.write(reinterpret_cast<char*>(&fm.w0), sizeof(double));
 				out.close();
 			} else {
 				throw "could not open " + filename;
