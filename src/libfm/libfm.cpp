@@ -404,7 +404,8 @@ int main(int argc, char **argv) {
 			std::cout << "reading " << filename << std::endl; std::cout.flush();
 			std::ifstream in(filename.c_str(), std::ios_base::in | std::ios_base::binary);
 			if (in.is_open()) {
-				in.read(reinterpret_cast<char*>(&fm.w0), sizeof(double));
+                          //in.read(reinterpret_cast<char*>(&fm.w0), sizeof(double));
+                          in >> fm.w0;
 				in.close();
 			} else {
 				throw "could not open " + filename;
